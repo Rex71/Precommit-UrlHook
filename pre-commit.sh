@@ -1,6 +1,5 @@
 #!/bin/bash
 #Run your pre-commit check from here for date changes
-
 # ./urlcheck-run.sh
 git stash -q --keep-index
 ./urlcheck-run.sh
