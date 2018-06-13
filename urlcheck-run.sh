@@ -12,10 +12,9 @@
 #if [[ $STASHES == "$STASH_NAME" ]]; then
 #  git stash pop -q
 #fi
-
 statush=$(curl -Is $1 | head -n 1)
 
-sleep 5
+sleep 6
 
 status200=$(echo $statush | grep -o 200)
 status302=$(echo $statush | grep -o 302)
@@ -23,6 +22,7 @@ status302=$(echo $statush | grep -o 302)
 if [[ ! -e /var/log/urlstatus.log ]];
 		then
     		sudo touch /var/log/urlstatus.log
+		sudo touch /var/log/urlstatus.err
 fi
 
 if [[ $status200 == "200" ]];
@@ -34,9 +34,10 @@ elif [[ $status302 == "302" ]];
 		echo "UP 302 Found | `date`" >> "/var/log/urlstatus.log"
 echo $status302
 else
-		echo "error"
-echo $statush
+		echo "Error | `date`" >> "/var/log/urlstatus.err"
+		echo $statush  >> "/var/log/urlstatus.err"
+echo $statush Error
 fi
 
 exit 0
-
+k
