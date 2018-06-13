@@ -1,17 +1,10 @@
 #!/bin/bash
-#Do a check to see if a URL is availible. Pass URL as arugument. e.g ./pre-commit.sh www.google.com
+#Run your pre-commit check from here for date changes
 
-status=$(curl -Is $1 | head -n 1 | grep -o 200)
-
-sleep 3
-
-if [[ $status == "200" ]]
-		then
-		echo "UP 200 ok | `date`" >> "/home/rex/Gtest/logs/status.log"
-		Status=000
-fi
-
-echo $status
-
+# ./urlcheck-run.sh
+git stash -q --keep-index
+./urlcheck-run.sh
+RESULT=$?
+git stash pop -q
+[ $RESULT -ne 0 ] && exit 1
 exit 0
-
