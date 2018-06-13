@@ -15,18 +15,23 @@
 
 statush=$(curl -Is $1 | head -n 1)
 
-sleep 3
+sleep 5
 
 status200=$(echo $statush | grep -o 200)
 status302=$(echo $statush | grep -o 302)
 
-if [[ $status200 == "200" ]]
+if [[ ! -e /var/log/urlstatus.log ]];
 		then
-		echo "UP 200 ok | `date`" >> "/status.log"
+    		sudo touch /var/log/urlstatus.log
+fi
+
+if [[ $status200 == "200" ]];
+		then
+		echo "UP 200 ok | `date`" >> "/var/log/urlstatus.log"
 echo $status200
-elif [[ $status302 == "302" ]]
+elif [[ $status302 == "302" ]];
 		then
-		echo "UP 302 Found | `date`" >> "/status.log"
+		echo "UP 302 Found | `date`" >> "/var/log/urlstatus.log"
 echo $status302
 else
 		echo "error"
