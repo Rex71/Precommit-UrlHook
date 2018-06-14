@@ -1,8 +1,6 @@
 #!/bin/bash
 #Do a check to see if a URL is availible. Pass URL as arugument. e.g ./urlcheck-run.sh www.google.com
 
-# pre-commit.sh
-
 # STASH_NAME="pre-commit-$(date +%s)"
 # git stash save -q --keep-index $STASH_NAME
 
@@ -12,6 +10,8 @@
 #if [[ $STASHES == "$STASH_NAME" ]]; then
 #  git stash pop -q
 #fi
+
+
 statush=$(curl -Is $1 | head -n 1)
 
 sleep 6
