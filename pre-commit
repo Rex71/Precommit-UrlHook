@@ -1,10 +1,27 @@
 #!/bin/bash
-#Run your pre-commit check from here for date changes
-# ./urlcheck-run.sh
-#git stash -q --keep-index
-#./urlcheck-run.sh "$@" #to pass arguments
-./urlcheck-run.sh www.google.com
+
+statush=$(curl -Is www.callpay.com | head -n 1)
+
+sleep 6
+
 RESULT=$?
-#git stash pop -q
-[ $RESULT -ne 0 ] && exit 1
+
+status200=$(echo $statush | grep -o 200)
+status302=$(echo $statush | grep -o 302)
+
+
+if [[ $status200 == "200" ]];
+		then
+		echo "200"
+elif [[ $status302 == "302" ]];
+		then
+		echo "302"
+else
+echo $statush Error
+echo $RESULT
+exit 1
+fi
+
 exit 0
+
+
