@@ -1,5 +1,6 @@
 #!/bin/bash
 #Do a check to see if a URL is availible. Pass URL as arugument. e.g ./urlcheck-run.sh www.google.com
+# Uncomment for stash
 
 # STASH_NAME="pre-commit-$(date +%s)"
 # git stash save -q --keep-index $STASH_NAME
