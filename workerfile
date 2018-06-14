@@ -1,8 +1,0 @@
-#!bin/bash
-
-echo "Testing stuff"
-echo "someother stuff"
-exit  0
-
-
-
