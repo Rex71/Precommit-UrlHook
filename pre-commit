@@ -1,6 +1,6 @@
 #!/bin/bash
 
-statush=$(curl -Is www.callpay.com | head -n 1)
+statush=$(curl -Is https://agent.callpay.com/site/health | head -n 1)
 
 sleep 6
 
