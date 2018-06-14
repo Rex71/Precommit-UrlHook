@@ -1,0 +1,7 @@
+#!bin/bash
+
+echo "Testing stuff"
+exit  0
+
+
+
